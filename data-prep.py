@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 #############################################################################
 #### Building Energy Data from NYC Government only primarytype = 'office'####

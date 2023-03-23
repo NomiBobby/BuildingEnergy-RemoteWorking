@@ -16,3 +16,11 @@ def print_df_info(df):
 #####################################
 #### filter office buildings? ####
 #####################################
+
+def filter_df(df, value, col1, col2=None, col3=None):
+    """
+    filter df based on a value in a column.
+    """
+    condition = (df[col1] == value) | (df[col2] == value) | (df[col3] == value)
+    df_filter = df[condition]
+    return df_filter
