@@ -1,4 +1,6 @@
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
 #####################################
 #### print shape of df ####
@@ -12,15 +14,15 @@ def print_df_info(df):
     print("Data head:")
     print(df.head())
     
-    
-#####################################
-#### filter office buildings? ####
-#####################################
 
-def filter_df(df, value, col1, col2=None, col3=None):
+#####################################
+#### simple discreptive analysis ####
+#####################################    
+def discri_analysis(df, col):
     """
-    filter df based on a value in a column.
-    """
-    condition = (df[col1] == value) | (df[col2] == value) | (df[col3] == value)
-    df_filter = df[condition]
-    return df_filter
+    Prints simple discptive analysis results and histogram
+    """  
+    print(df[col].describe())
+    plt.hist(df[col], bins=50)
+    plt.show()
+    print(df[col].isna().sum())
