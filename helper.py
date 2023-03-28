@@ -2,10 +2,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-#####################################
-#### print shape of df ####
-#####################################
-
 def print_df_info(df):
     """
     Prints the shape of the DataFrame and its first few rows.
@@ -14,15 +10,84 @@ def print_df_info(df):
     print("Data head:")
     print(df.head())
     
-
-#####################################
-#### simple discreptive analysis ####
-#####################################    
-def discri_analysis(df, col):
+        
+def summary(df, col):
     """
-    Prints simple discptive analysis results and histogram
+    run a simple summary analysis
     """  
+    # summarize the df
+    df[col] = pd.to_numeric(df[col], errors='coerce')
+    print("NaN: ", df[col].isna().sum())
     print(df[col].describe())
-    plt.hist(df[col], bins=50)
-    plt.show()
-    print(df[col].isna().sum())
+    
+    
+# def discri_analysis(df, col):
+#     """
+#     run a simple discptive analysis
+#     """  
+#     # NaN
+#     print("NaN: ", df[col].isna().sum())
+#     print(df[col].describe())
+    
+#     df2 = df.dropna(subset=[col])
+#     df2['Borough'] = df2['Borough'].fillna('Not Specified')
+
+#     plt.hist(df2[col], bins=50)
+#     # add labels and title
+#     plt.suptitle('Histogram of ' + col)
+#     plt.xlabel(col)
+#     plt.ylabel('Frequency')  
+#     plt.show()
+
+#     # Plot histograms for each borough with different colors
+#     colors = ['red', 'green', 'blue', 'orange', 'purple', 'gray']
+#     for i, borough in enumerate(df['Borough'].unique()):
+#         plt.hist(df2[df2['Borough'] == borough][col], bins=50, color=colors[i], alpha=0.5, label=borough)
+        
+#     # Add labels and title
+#     plt.title('Histogram of ' +col+' by Borough')
+#     plt.xlabel(col)
+#     plt.ylabel('Frequency')
+#     plt.legend()
+#     plt.show()
+    
+
+# def discri_analysis(df, col):
+#     """
+#     run a simple discptive analysis grouped by borough
+#     and draw a histogram
+#     """  
+#     # overall descriptive analysis
+#     print("NaN: ", df[col].isna().sum())
+#     print(df[col].describe())
+    
+#     df2 = df.dropna(subset=[col])
+#     df2['Borough'] = df2['Borough'].fillna('Not Specified')
+
+#     plt.hist(df2[col], bins=50)
+#     # add labels and title
+#     plt.suptitle('Histogram of ' + col)
+#     plt.xlabel(col)
+#     plt.ylabel('Frequency')  
+#     plt.show()
+
+#     # Plot histograms for each borough with different colors
+#     colors = ['red', 'green', 'blue', 'orange', 'purple', 'gray']
+#     for i, borough in enumerate(df['Borough'].unique()):
+#         plt.hist(df2[df2['Borough'] == borough][col], bins=50, color=colors[i], alpha=0.5, label=borough)
+        
+#     # Add labels and title
+#     plt.title('Histogram of ' +col+' by Borough')
+#     plt.xlabel(col)
+#     plt.ylabel('Frequency')
+#     plt.legend()
+#     plt.show()
+    
+    
+def filter_month(df, month):
+    """
+    filter out one month in montly ll84 data with column "Month"
+    Example for 2020 Nov: Nov-20
+    """  
+    filter_df = df[(df['Month'] == month)]
+    return filter_df
