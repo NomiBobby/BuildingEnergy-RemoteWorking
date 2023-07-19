@@ -1,9 +1,10 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-def plot_residual(vardata, residuals_normalized, title, xlabel, ylabel):
+def plot_residual(vardata, residuals_normalized, title, xlabel):
 
     # Create a scatter plot of the normalized residuals
+    ylabel = 'Normalized Residuals'
     plt.scatter(vardata, residuals_normalized, alpha=0.5)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
